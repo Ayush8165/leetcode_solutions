@@ -12,44 +12,66 @@ void print(vector<int> matrix)
 
 int subarraySum(vector<int> &nums, int k)
 {
-    int left = 0;
-    int right = 0;
-    int count = 0;
-    int sum = nums[0];
+    int n = nums.size();
+    map<int, int> mp;
+    int res = 0, ans = 0;
+    long sum = 0;
 
-    while (left <= right)
+    for (int i = 0; i < n; i++)
     {
-        while (left <= right and sum > k)
-        {
-            sum = sum - nums[left];
-            left++;
-        }
+        sum += nums[i];
         if (sum == k)
         {
-            count++;
+            res++;
         }
-        right++;
-        if (right < nums.size())
-        {
-            sum = sum + nums[right];
-        }
-        else
-        {
-            right--;
-            left++;
-            if (left == right)
-            {
-                sum = nums[left];
-            }
-            else
-            {
-                sum = sum - nums[left];
-            }
-        }
-    }
+        ans = sum - k;
 
-    return count;
+        res += mp[ans];
+        mp[sum]++;
+    }
+    return res;
 }
+
+// int subarraySum(vector<int> &nums, int k)
+// {
+//     int left = 0;
+//     int right = 0;
+//     int count = 0;
+//     int sum = nums[0];
+
+//     while (left <= right)
+//     {
+//         while (left <= right and sum > k)
+//         {
+//             sum = sum - nums[left];
+//             left++;
+//         }
+//         if (sum == k)
+//         {
+//             count++;
+//         }
+//         right++;
+//         if (right < nums.size())
+//         {
+//             sum = sum + nums[right];
+//         }
+//         else
+//         {
+//             right--;
+//             left++;
+//             if (left == right)
+//             {
+//                 sum = nums[left];
+//             }
+//             else
+//             {
+//                 sum = sum - nums[left];
+//             }
+//         }
+//     }
+
+//     return count;
+// }
 
 int main()
 {
