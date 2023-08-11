@@ -15,16 +15,13 @@ int lengthOfLongestSubstring(string s)
             mpp[s[right]]++;
             len = max(len, right - left + 1);
             right++;
-            // cout << "1 ";
         }
         else
         {
-            // cout << "2 ";
             while (mpp[s[right]] != 0)
             {
                 mpp.erase(s[left]);
                 left++;
-                // cout << "3 ";
             }
         }
     }
