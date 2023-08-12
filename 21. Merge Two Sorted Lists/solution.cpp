@@ -34,9 +34,9 @@ void insert(ListNode *&head, int data)
 
 ListNode *mergeTwoLists(ListNode *list1, ListNode *list2)
 {
-    if (list1 == nullptr)
+    if (list1 == NULL)
         return list2;
-    if (list2 == nullptr)
+    if (list2 == NULL)
         return list1;
 
     // assuming list1->data is smaller
@@ -47,10 +47,10 @@ ListNode *mergeTwoLists(ListNode *list1, ListNode *list2)
     if (list1->data > list2->data)
         swap(small, large);
     ListNode *head = small;
-    while (small != nullptr && large != nullptr)
+    while (small != NULL && large != NULL)
     {
-        ListNode *temp = nullptr;
-        while (small != nullptr && small->data <= large->data)
+        ListNode *temp = NULL;
+        while (small != NULL && small->data <= large->data)
         {
             temp = small;
             small = small->next;
