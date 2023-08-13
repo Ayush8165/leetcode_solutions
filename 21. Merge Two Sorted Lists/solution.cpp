@@ -8,9 +8,9 @@ public:
     ListNode *next;
 
     // Constructor
-    ListNode(int data)
+    ListNode(int val)
     {
-        data = data;
+        data = val;
         next = NULL;
     }
 };
@@ -32,21 +32,43 @@ void insert(ListNode *&head, int data)
     temp->next = newNode;
 }
 
+void print(ListNode *head)
+{
+    while (head != NULL)
+    {
+        cout << head->data << " -> ";
+        head = head->next;
+    }
+    cout << "NULL" << endl;
+}
+
 ListNode *mergeTwoLists(ListNode *list1, ListNode *list2)
 {
     if (list1 == NULL)
+    {
         return list2;
+    }
     if (list2 == NULL)
+    {
         return list1;
+    }
 
-    // assuming list1->data is smaller
-    ListNode *small = list1;
-    ListNode *large = list2;
+    ListNode *small;
+    ListNode *large;
 
-    // assigning small to whichever is smaller
     if (list1->data > list2->data)
-        swap(small, large);
-    ListNode *head = small;
+    {
+        small = list2;
+        large = list1;
+    }
+    else
+    {
+        small = list1;
+        large = list2;
+    }
+
+    ListNode *newHead = small;
+
     while (small != NULL && large != NULL)
     {
         ListNode *temp = NULL;
@@ -58,17 +80,9 @@ ListNode *mergeTwoLists(ListNode *list1, ListNode *list2)
         temp->next = large;
         swap(small, large);
     }
-    return head;
-}
 
-void print(ListNode *head)
-{
-    while (head != NULL)
-    {
-        cout << head->data << " -> ";
-        head = head->next;
-    }
-    cout << "NULL" << endl;
+    print(newHead);
+    return newHead;
 }
 
 int main()
@@ -99,6 +113,5 @@ int main()
     }
 
     ListNode *ans = mergeTwoLists(head1, head2);
-    print(ans);
     return 0;
 }
