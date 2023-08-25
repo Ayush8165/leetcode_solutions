@@ -4,7 +4,28 @@ using namespace std;
 int calculateMinPatforms(int at[], int dt[], int n)
 {
     // Write your code here.
-    // sort()
+    sort(at, at + n);
+    sort(dt, dt + n);
+
+    int platfor_needed = 1, result = 1;
+
+    // Using two pointer here
+    int i = 1, j = 0;
+    while (i < n and j < n)
+    {
+        if (at[i] <= dt[j])
+        {
+            platfor_needed++;
+            i++;
+        }
+        else if (at[i] > dt[j])
+        {
+            platfor_needed--;
+            j++;
+        }
+        result = max(result, platfor_needed);
+    }
+    return result;
 }
 
 int main()
