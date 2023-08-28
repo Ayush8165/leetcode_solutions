@@ -28,6 +28,7 @@ string getPermutation(int n, int k)
     string s = convoString(n);
     string answer = "";
     k--;
+    
     while (true)
     {
         int x = s.length() - 1;
