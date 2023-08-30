@@ -25,24 +25,27 @@ int factorial(int n)
 
 string getPermutation(int n, int k)
 {
-    string s = convoString(n);
+    string number = convoString(n);
     string answer = "";
+
+    // k-- for 0 indexing
     k--;
-    
-    while (true)
+
+    // get factorial
+    int a = factorial(number.length());
+    a = a / number.length();
+
+    while (1)
     {
-        int x = s.length() - 1;
-        int fact = factorial(x);
-        answer = answer + s[k / fact];
-        k = k % fact;
-        cout << s << endl;
-        cout << k / fact;
-        s.erase(k / fact, 1);
-        cout << s << endl;
-        if (s.length() == 0)
+        int index = k / a;
+        answer = answer + number[index];
+        number.erase(index, 1);
+        if (number.length() <= 0)
         {
             break;
         }
+        k = k % a;
+        a = a / number.length();
     }
     return answer;
 }
