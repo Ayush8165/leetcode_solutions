@@ -1,43 +1,48 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool check(string s)
+void solve(map<string, int> &str1, string s)
 {
-    int i = 0;
-    int j = s.length() - 1;
-    while (i <= j)
+    string ans = "";
+    for (int i = 0; i < s.length(); i++)
     {
-        if (s[i] != s[j])
+        for (int j = i; j < s.length(); j++)
         {
-            return false;
+            ans = ans + s[j];
+            str1[ans]++;
         }
-        i++;
-        j--;
+        ans = "";
     }
-    return true;
+}
+
+bool check_palindrome(string s)
+{
+    string rev = s;
+    reverse(rev.begin(), rev.end());
+    if (s == rev)
+    {
+        return true;
+    }
+    return false;
 }
 
 string longestPalindrome(string s)
 {
-    int n = s.length();
-    if (n <= 1)
-    {
-        return s;
-    }
+    // generate all substrings
+    map<string, int> str1;
+    solve(str1, s);
 
-    string longest = "";
+    // now match longest substring in both maps
     string answer;
-    for (int i = 1; i <= n; i++)
+    int len = 0;
+    for (auto it : str1)
     {
-        for (int j = 0; j < n - i + 1; j++)
+        if (check_palindrome(it.first))
         {
-            string sub = s.substr(j, i);
-            if (check(sub))
+            if (it.first.length() > len)
             {
-                if (sub.length() > longest.length())
-                {
-                    answer = sub;
-                }
+                len = it.first.length();
+                answer = it.first;
             }
         }
     }
