@@ -23,7 +23,7 @@ string minWindow(string s, string t)
     int left = 0, right = s.length() - 1;
     int i = 0, j = 0;
     int minLength = s.length();
-    int count = t.length();
+    int count = mppt.size();
     bool flag1 = false, flag2 = false;
 
     while (i < s.length())
@@ -54,7 +54,7 @@ string minWindow(string s, string t)
                 if (mppt[s[i]] > 0)
                 {
                     count++;
-                    if (j - i < minLength)
+                    if (j - i <= minLength)
                     {
                         // cout << "found" << endl;
                         found = true;
