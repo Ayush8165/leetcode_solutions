@@ -17,63 +17,37 @@ public:
 
     bool isValid(string s)
     {
-        pair<char, char> br[3];
-        br[0] = make_pair('{', '}');
-        br[1] = make_pair('(', ')');
-        br[2] = make_pair('[', ']');
+        stack<char> st;
+        map<char, char> mpp;
+        mpp['{'] = '}';
+        mpp['('] = ')';
+        mpp['['] = ']';
 
         for (int i = 0; i < s.length(); i++)
         {
             if (st.empty())
             {
-                for (auto it : br)
-                {
-                    if (it.first == s[i])
-                    {
-                        st.push(s[i]);
-                        goto done;
-                    }
-                }
-                return false;
+                st.push(s[i]);
             }
             else
             {
-                for (auto it : br)
+                if (mpp[st.top()] != 0)
                 {
-                    if (it.first == s[i])
+                    if (s[i] == mpp[st.top()])
+                    {
+                        st.pop();
+                    }
+                    else
                     {
                         st.push(s[i]);
-                        goto done;
-                    }
-                }
-                for (auto it : br)
-                {
-                    if (it.second == s[i])
-                    {
-                        if (it.first == st.top())
-                        {
-                            st.pop();
-                            goto done;
-                        }
-                        else
-                        {
-                            return false;
-                        }
                     }
                 }
             }
-        done:
-            continue;
         }
-
         if (st.empty())
-        {
             return true;
-        }
-        else
-        {
-            return false;
-        }
+
+        return false;
     }
 };
 
