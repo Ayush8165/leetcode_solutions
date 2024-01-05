@@ -56,7 +56,7 @@ int main()
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    string s = "{{{[()]}}}";
+    string s = "{{{[(]}}}";
     Solution obj;
 
     bool flag = obj.isValid(s);
