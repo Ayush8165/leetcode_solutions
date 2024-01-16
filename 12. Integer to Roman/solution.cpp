@@ -37,7 +37,6 @@ public:
                 answer = answer + roman[i - 1];
             }
         }
-
         return answer;
     }
 };
