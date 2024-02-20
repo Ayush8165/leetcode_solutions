@@ -35,10 +35,13 @@ void solve(TreeNode *root, int cheight, int &height)
 
 int maxDepth(TreeNode *root)
 {
-    int height = 0;
-    int cheight = 0;
-    solve(root, cheight, height);
-    return height;
+    if (root == NULL)
+    {
+        return 0;
+    }
+    int left = maxDepth(root->left);
+    int right = maxDepth(root->right);
+    return max(left, right) + 1;
 }
 
 int main()
