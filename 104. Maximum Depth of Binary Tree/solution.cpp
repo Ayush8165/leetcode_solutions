@@ -17,22 +17,6 @@ public:
     }
 };
 
-void solve(TreeNode *root, int cheight, int &height)
-{
-    if (root == NULL)
-    {
-        return;
-    }
-
-    if (cheight > height)
-    {
-        height = cheight;
-    }
-
-    solve(root->left, cheight + 1, height);
-    solve(root->right, cheight + 1, height);
-}
-
 int maxDepth(TreeNode *root)
 {
     if (root == NULL)
